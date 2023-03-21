@@ -28,6 +28,7 @@ export default function Task({ onCreate }: ITaskProps) {
           onChange={(event) => setTask(event.target.value)}
           value={task}
           maxLength={30}
+          required
         />
       </div>
     </form>

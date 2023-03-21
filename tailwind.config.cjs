@@ -8,6 +8,7 @@ module.exports = {
       green: "#54c689",
       white: "#ffff",
       black: "#000",
+      gray: "#C5CFD6",
       transparent: "transparent",
     },
     textColor: {
@@ -16,7 +17,6 @@ module.exports = {
       green: "#54c689",
       white: "#ffff",
       black: "#000",
-      transparent: "transparent",
     },
     extend: {},
   },

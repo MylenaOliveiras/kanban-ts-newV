@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ITask } from "../Task.tsx/Task";
-import Card from "../Card.tsx/Card";
+import { ITask } from "../Task/Task";
+import Card from "../Card/Card";
 
 export interface IBoard {
   addTask: (task: ITask) => void;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Board from "./components/Board/Board";
-import Card from "./components/Card.tsx/Card";
-import Task, { ITask } from "./components/Task.tsx/Task";
+import Card from "./components/Card/Card";
+import Task, { ITask } from "./components/Task/Task";
 function App() {
   return (
     <main className="App">
