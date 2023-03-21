@@ -20,14 +20,13 @@ export default function Task({ onCreate }: ITaskProps) {
         setTask("");
       }}
     >
-      <div className="rounded mx-1 p-2 bg-black/10 flex gap-14">
+      <div className="rounded p-2 bg-black/10 flex gap-14">
         <input
           className="outline-0 placeholder:text-white/50 bg-transparent"
           placeholder="Write your task..."
           type="text"
           onChange={(event) => setTask(event.target.value)}
           value={task}
-          maxLength={30}
           required
         />
       </div>
