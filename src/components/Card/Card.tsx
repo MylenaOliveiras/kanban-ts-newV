@@ -47,7 +47,7 @@ export default function Card({
           .filter((task) => task.status === status)
           .map((nota) => (
             <div className="bg-white rounded-lg m-auto">
-              <p className="font-medium text-base p-2 bg-white break-words rounded">
+              <p className="font-medium text-sm p-3 bg-white break-words rounded">
                 {nota.descricao}
               </p>
               <footer className="flex gap-3 place-content-end mr-3 p-1 rounded">
