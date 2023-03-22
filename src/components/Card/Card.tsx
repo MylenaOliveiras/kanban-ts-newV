@@ -40,14 +40,16 @@ export default function Card({
             <img src="/imagens/inprogress.svg" className="pl-2" />
           )}
           {status == "Done" && <img src="/imagens/done.svg" className="pl-2" />}
-          <h1 className={`font-bold ${colorTitle}`}>{status}</h1>
+          <h1 className={`font-poppins font-bold text-base ${colorTitle}`}>
+            {status}
+          </h1>
         </header>
 
         {tasks
           .filter((task) => task.status === status)
           .map((nota) => (
             <div className="bg-white rounded-lg m-auto">
-              <p className="font-medium text-sm p-3 bg-white break-words rounded">
+              <p className="font-medium font-poppins text-sm p-3 bg-white break-words rounded">
                 {nota.descricao}
               </p>
               <footer className="flex gap-3 place-content-end mr-3 p-1 rounded">
