@@ -22,7 +22,7 @@ export default function Task({ onCreate }: ITaskProps) {
     >
       <div className="rounded bg-black/10 p-2">
         <input
-          className="outline-0 bg-transparent placeholder:text-white/50 placeholder:text-xs font-poppins"
+          className="outline-0 bg-transparent placeholder:text-white/50 text-xs font-poppins font-medium"
           placeholder="Write your task..."
           type="text"
           onChange={(event) => setTask(event.target.value)}
