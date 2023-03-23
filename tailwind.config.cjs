@@ -8,7 +8,7 @@ module.exports = {
       green: "#54c689",
       white: "#ffff",
       black: "#000",
-      gray: "#C5CFD6",
+      gray: "#e1e8ed",
       transparent: "transparent",
     },
     textColor: {
