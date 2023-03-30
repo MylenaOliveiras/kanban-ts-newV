@@ -6,6 +6,7 @@ export interface IBoard {
   addTask: (task: ITask) => void;
   removeTask: (task: ITask) => void;
   updateTask: (task: ITask) => void;
+  gobackTask: (task: ITask) => void;
 }
 
 function Board() {
@@ -33,6 +34,20 @@ function Board() {
     ]);
   }
 
+  function gobackTask(task: ITask) {
+    const newTask = { ...task };
+    if (task.status === "In Progress") {
+      newTask.status = "To Do";
+    } else if (task.status === "Done") {
+      newTask.status = "In Progress";
+    }
+
+    setNotas([
+      ...notas.filter((tarefa) => task.descricao != tarefa.descricao),
+      newTask,
+    ]);
+  }
+
   return (
     <section className="flex gap-2 justify-center h-auto">
       <div>
@@ -42,6 +57,7 @@ function Board() {
           addTask={addTask}
           removeTask={removeTask}
           updateTask={updateTask}
+          gobackTask={gobackTask}
         />
       </div>
       <div>
@@ -51,6 +67,7 @@ function Board() {
           addTask={addTask}
           removeTask={removeTask}
           updateTask={updateTask}
+          gobackTask={gobackTask}
         />
       </div>
       <div>
@@ -60,6 +77,7 @@ function Board() {
           addTask={addTask}
           removeTask={removeTask}
           updateTask={updateTask}
+          gobackTask={gobackTask}
         />
       </div>
     </section>

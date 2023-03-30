@@ -7,6 +7,7 @@ interface ICard {
   addTask: (task: ITask) => void;
   removeTask: (task: ITask) => void;
   updateTask: (task: ITask) => void;
+  gobackTask: (task: ITask) => void;
 }
 
 export default function Card({
@@ -15,6 +16,7 @@ export default function Card({
   addTask,
   removeTask,
   updateTask,
+  gobackTask,
 }: ICard) {
   let background = "bg-blue";
   let colorIcon = "text-blue";
@@ -56,6 +58,14 @@ export default function Card({
                     <use href="/imagens/trash.svg#root" />
                   </svg>
                 </button>
+                {status !== "To Do" && (
+                  <button onClick={() => gobackTask(nota)}>
+                    <svg className={`w-4 h-5 ${colorIcon} rotate-180 py-1`}>
+                      <use href="/imagens/arrow.svg#root"></use>
+                    </svg>
+                  </button>
+                )}
+
                 {status !== "Done" && (
                   <button onClick={() => updateTask(nota)}>
                     <svg className={`w-4 h-5 ${colorIcon} pt-1`}>
