@@ -1,13 +1,5 @@
-import React, { useState } from "react";
-
-export interface ITask {
-  descricao: string;
-  status: "In Progress" | "Done" | "To Do";
-}
-
-interface ITaskProps {
-  onCreate: (task: ITask) => void;
-}
+import { useState } from "react";
+import { ITask, ITaskProps } from "./types";
 
 export default function Task({ onCreate }: ITaskProps) {
   const [task, setTask] = useState("");

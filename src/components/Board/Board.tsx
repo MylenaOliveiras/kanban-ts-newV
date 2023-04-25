@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ITask } from "../Task/Task";
 import Card from "../Card/Card";
-
-export interface IBoard {
-  addTask: (task: ITask) => void;
-  removeTask: (task: ITask) => void;
-  updateTask: (task: ITask) => void;
-  gobackTask: (task: ITask) => void;
-}
 
 function Board() {
   const [notas, setNotas] = useState<ITask[]>([]);

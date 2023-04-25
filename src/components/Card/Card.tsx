@@ -1,14 +1,5 @@
-import React, { useState } from "react";
-import Task, { ITask } from "../Task/Task";
-
-interface ICard {
-  status: "In Progress" | "Done" | "To Do";
-  tasks: ITask[];
-  addTask: (task: ITask) => void;
-  removeTask: (task: ITask) => void;
-  updateTask: (task: ITask) => void;
-  gobackTask: (task: ITask) => void;
-}
+import Task from "../Task/Task";
+import { ICard } from "./types";
 
 export default function Card({
   status,
