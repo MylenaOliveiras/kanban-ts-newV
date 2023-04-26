@@ -1,4 +1,5 @@
 export interface ITask {
+  id?: number;
   descricao: string;
   status: "In Progress" | "Done" | "To Do";
 }

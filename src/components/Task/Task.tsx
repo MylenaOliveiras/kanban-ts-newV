@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { ITask, ITaskProps } from "./types";
+import { ITaskProps } from "./types";
 
 export default function Task({ onCreate }: ITaskProps) {
   const [task, setTask] = useState("");
-
   return (
     <form
       onSubmit={(e) => {
