@@ -23,7 +23,10 @@ function deleteTask(values: ITask) {
 async function putTask(values: ITask) {
   const response = await fetch(`/task/${values.id}`, {
     method: "PUT",
+    body: JSON.stringify(values),
   });
+  const data = await response.json();
+  return data;
 }
 function App() {
   const { data, isLoading, isError } = useQuery<ITask[]>({
@@ -35,6 +38,7 @@ function App() {
 
   const { mutate: addTask } = useMutation(postTask);
   const { mutate: removeTask } = useMutation(deleteTask);
+  const { mutate: updateStatusTask } = useMutation(putTask);
 
   function createTask(task: ITask) {
     addTask(task, {
@@ -51,6 +55,39 @@ function App() {
         queryClient.invalidateQueries(["task"]);
       },
     });
+  }
+  function updateTask(task: ITask) {
+    const updatedTask = { ...task };
+    if (task.status === "To Do") {
+      updatedTask.status = "In Progress";
+    } else if (task.status === "In Progress") {
+      updatedTask.status = "Done";
+    }
+
+    updateLocalTask(updatedTask);
+    updateStatusTask(updatedTask);
+  }
+
+  function gobackTask(task: ITask) {
+    const updatedTask = { ...task };
+    if (task.status === "In Progress") {
+      updatedTask.status = "To Do";
+    } else if (task.status === "Done") {
+      updatedTask.status = "In Progress";
+    }
+
+    updateLocalTask(updatedTask);
+    updateStatusTask(updatedTask);
+  }
+
+  function updateLocalTask(updatedTask: ITask) {
+    const updatedTasks = data?.map((task) => {
+      if (task.id === updatedTask.id) {
+        return updatedTask;
+      }
+      return task;
+    });
+    queryClient.setQueryData<ITask[]>(["task"], updatedTasks || []);
   }
 
   if (isLoading) {
