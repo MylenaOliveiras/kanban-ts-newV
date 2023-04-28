@@ -1,4 +1,4 @@
-import { context, response, rest } from "msw";
+import { rest } from "msw";
 import { Storage } from "./storage";
 
 export function createCRUDHandlers<TData extends { id: number }>(

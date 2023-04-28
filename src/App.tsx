@@ -1,14 +1,10 @@
 import Board from "./components/Board/Board";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ITask } from "./components/Task/types";
-import { getTask, postTask, deleteTask, putTask } from "./api";
+import { postTask, deleteTask, putTask } from "./api";
+import { data, isError, isLoading } from "./api";
 
 function App() {
-  const { data, isLoading, isError } = useQuery<ITask[]>({
-    queryKey: ["task"],
-    queryFn: getTask,
-  });
-
   const queryClient = useQueryClient();
   const invalidateOptions = {
     onSuccess() {
@@ -19,13 +15,6 @@ function App() {
   const { mutate: removeTask } = useMutation(deleteTask);
   const { mutate: updateStatusTask } = useMutation(putTask);
 
-  function createTask(task: ITask) {
-    addTask(task, invalidateOptions);
-  }
-
-  function excludeTask(task: ITask) {
-    removeTask(task, invalidateOptions);
-  }
   function moveTaskForward(task: ITask) {
     const updatedTask = { ...task };
     if (task.status === "To Do") {
@@ -43,7 +32,6 @@ function App() {
     } else if (task.status === "Done") {
       updatedTask.status = "In Progress";
     }
-
     updateStatusTask(updatedTask, invalidateOptions);
   }
 
@@ -60,9 +48,9 @@ function App() {
           Kanban
         </h1>
         <Board
-          addTask={(data) => createTask(data)}
+          addTask={(data) => addTask(data, invalidateOptions)}
           moveTaskBack={(data) => moveTaskBack(data)}
-          removeTask={(data) => excludeTask(data)}
+          removeTask={(data) => removeTask(data, invalidateOptions)}
           moveTaskForward={(data) => moveTaskForward(data)}
           tasks={data || []}
         />

@@ -1,4 +1,10 @@
 import { ITask } from "./components/Task/types";
+import { useQuery } from "@tanstack/react-query";
+
+export const { data, isLoading, isError } = useQuery<ITask[]>({
+  queryKey: ["task"],
+  queryFn: getTask,
+});
 
 export async function getTask() {
   const response = await fetch("/task");
