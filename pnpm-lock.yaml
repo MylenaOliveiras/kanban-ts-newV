@@ -10,9 +10,6 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
-  react-id-generator:
-    specifier: ^3.0.2
-    version: 3.0.2(react@18.2.0)
 
 devDependencies:
   '@types/react':
@@ -1601,14 +1598,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
-
-  /react-id-generator@3.0.2(react@18.2.0):
-    resolution: {integrity: sha512-d0rqWzZ6g0P9agHtA7wX/ErQ4iV/657/0Oz+SX3kid7nR4d0YwaWjjOTIrgYHv2lICZKrxIH4BaKppKrM8fRfw==}
-    peerDependencies:
-      react: '>= 16.8.0'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react-refresh@0.14.0:
