@@ -10,26 +10,21 @@ function App() {
   });
 
   const queryClient = useQueryClient();
-
+  const invalidateOptions = {
+    onSuccess() {
+      queryClient.invalidateQueries(["task"]);
+    },
+  };
   const { mutate: addTask } = useMutation(postTask);
   const { mutate: removeTask } = useMutation(deleteTask);
   const { mutate: updateStatusTask } = useMutation(putTask);
 
   function createTask(task: ITask) {
-    addTask(task, {
-      onSuccess() {
-        queryClient.invalidateQueries(["task"]);
-      },
-    });
+    addTask(task, invalidateOptions);
   }
 
   function excludeTask(task: ITask) {
-    removeTask(task, {
-      onSuccess() {
-        console.log("sucesso");
-        queryClient.invalidateQueries(["task"]);
-      },
-    });
+    removeTask(task, invalidateOptions);
   }
   function moveTaskForward(task: ITask) {
     const updatedTask = { ...task };
@@ -38,9 +33,7 @@ function App() {
     } else if (task.status === "In Progress") {
       updatedTask.status = "Done";
     }
-
-    updateLocalTask(updatedTask);
-    updateStatusTask(updatedTask);
+    updateStatusTask(updatedTask, invalidateOptions);
   }
 
   function moveTaskBack(task: ITask) {
@@ -51,18 +44,7 @@ function App() {
       updatedTask.status = "In Progress";
     }
 
-    updateLocalTask(updatedTask);
-    updateStatusTask(updatedTask);
-  }
-
-  function updateLocalTask(updatedTask: ITask) {
-    const updatedTasks = data?.map((task) => {
-      if (task.id === updatedTask.id) {
-        return updatedTask;
-      }
-      return task;
-    });
-    queryClient.setQueryData<ITask[]>(["task"], updatedTasks || []);
+    updateStatusTask(updatedTask, invalidateOptions);
   }
 
   if (isLoading) {
