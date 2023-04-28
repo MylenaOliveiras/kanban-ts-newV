@@ -4,6 +4,6 @@ export interface ICard {
   tasks: ITask[];
   addTask: (task: ITask) => void;
   removeTask: (task: ITask) => void;
-  updateTask: (task: ITask) => void;
-  gobackTask: (task: ITask) => void;
+  moveTaskForward: (task: ITask) => void;
+  moveTaskBack: (task: ITask) => void;
 }

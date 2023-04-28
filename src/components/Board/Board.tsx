@@ -1,7 +1,13 @@
 import Card from "../Card/Card";
 import { IBoard } from "./types";
 
-function Board({ addTask, gobackTask, removeTask, updateTask, tasks }: IBoard) {
+function Board({
+  addTask,
+  moveTaskBack,
+  removeTask,
+  moveTaskForward,
+  tasks,
+}: IBoard) {
   return (
     <section className="flex gap-2 justify-center h-auto">
       <div>
@@ -10,8 +16,8 @@ function Board({ addTask, gobackTask, removeTask, updateTask, tasks }: IBoard) {
           tasks={tasks}
           addTask={addTask}
           removeTask={removeTask}
-          updateTask={updateTask}
-          gobackTask={gobackTask}
+          moveTaskForward={moveTaskForward}
+          moveTaskBack={moveTaskBack}
         />
       </div>
       <div>
@@ -20,8 +26,8 @@ function Board({ addTask, gobackTask, removeTask, updateTask, tasks }: IBoard) {
           tasks={tasks}
           addTask={addTask}
           removeTask={removeTask}
-          updateTask={updateTask}
-          gobackTask={gobackTask}
+          moveTaskForward={moveTaskForward}
+          moveTaskBack={moveTaskBack}
         />
       </div>
       <div>
@@ -30,8 +36,8 @@ function Board({ addTask, gobackTask, removeTask, updateTask, tasks }: IBoard) {
           tasks={tasks}
           addTask={addTask}
           removeTask={removeTask}
-          updateTask={updateTask}
-          gobackTask={gobackTask}
+          moveTaskForward={moveTaskForward}
+          moveTaskBack={moveTaskBack}
         />
       </div>
     </section>

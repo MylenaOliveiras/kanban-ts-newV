@@ -1,33 +1,8 @@
 import Board from "./components/Board/Board";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ITask } from "./components/Task/types";
+import { getTask, postTask, deleteTask, putTask } from "./api";
 
-async function getTask() {
-  const response = await fetch("/task");
-  const data = await response.json();
-  return data;
-}
-async function postTask(values: ITask) {
-  const response = await fetch("/task", {
-    method: "POST",
-    body: JSON.stringify(values),
-  });
-  const data = await response.json();
-  return data;
-}
-function deleteTask(values: ITask) {
-  return fetch(`/task/${values.id}`, {
-    method: "DELETE",
-  });
-}
-async function putTask(values: ITask) {
-  const response = await fetch(`/task/${values.id}`, {
-    method: "PUT",
-    body: JSON.stringify(values),
-  });
-  const data = await response.json();
-  return data;
-}
 function App() {
   const { data, isLoading, isError } = useQuery<ITask[]>({
     queryKey: ["task"],
@@ -56,7 +31,7 @@ function App() {
       },
     });
   }
-  function updateTask(task: ITask) {
+  function moveTaskForward(task: ITask) {
     const updatedTask = { ...task };
     if (task.status === "To Do") {
       updatedTask.status = "In Progress";
@@ -68,7 +43,7 @@ function App() {
     updateStatusTask(updatedTask);
   }
 
-  function gobackTask(task: ITask) {
+  function moveTaskBack(task: ITask) {
     const updatedTask = { ...task };
     if (task.status === "In Progress") {
       updatedTask.status = "To Do";
@@ -104,9 +79,9 @@ function App() {
         </h1>
         <Board
           addTask={(data) => createTask(data)}
-          gobackTask={(data) => gobackTask(data)}
+          moveTaskBack={(data) => moveTaskBack(data)}
           removeTask={(data) => excludeTask(data)}
-          updateTask={(data) => updateTask(data)}
+          moveTaskForward={(data) => moveTaskForward(data)}
           tasks={data || []}
         />
       </div>
