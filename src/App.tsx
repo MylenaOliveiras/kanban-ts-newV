@@ -19,7 +19,6 @@ function App() {
   const { mutate: removeTask } = useMutation(deleteTask);
   const { mutate: updateStatusTask } = useMutation(putTask);
 
-  console.log(data);
   function moveTaskForward(task: Task) {
     const updatedTask = { ...task };
     if (task.status === "To Do") {
