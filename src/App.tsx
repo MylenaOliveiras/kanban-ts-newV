@@ -38,13 +38,22 @@ function App() {
     }
     updateStatusTask(updatedTask, invalidateOptions);
   }
-
-  if (isLoading) {
-    <h1>Carregando!</h1>;
-  }
   if (isError) {
-    <h1>Error!</h1>;
+    return (
+      <div className="text-center mt-56">
+        <img className="m-auto" src="./imagens/errorIcon.png" />
+        <h1>Sorry, something went wrong. Please contact the administrator!</h1>
+      </div>
+    );
   }
+  if (isLoading) {
+    return (
+      <div className="text-center mt-52">
+        <img className="m-auto" src="./imagens/loadingIcon.gif" />
+      </div>
+    );
+  }
+
   return (
     <main className="App py-16">
       <div className="bg-[url('/imagens/background.svg')] mt-8 w-[926px] h-[581px] bg-cover m-auto ">
