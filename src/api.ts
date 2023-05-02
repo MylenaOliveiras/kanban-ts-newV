@@ -1,9 +1,10 @@
-import { Task } from "./components/Task/types";
+import { Task, taskSchema } from "./components/Task/types";
 
 export async function getTask() {
   const response = await fetch("/task");
   const data = await response.json();
-  return data;
+  const parsedData = taskSchema.array().parse(data);
+  return parsedData;
 }
 export async function postTask(values: Task) {
   const response = await fetch("/task", {

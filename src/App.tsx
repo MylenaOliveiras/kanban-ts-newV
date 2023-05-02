@@ -1,14 +1,8 @@
 import Board from "./components/Board/Board";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postTask, deleteTask, putTask } from "./api";
+import { postTask, deleteTask, putTask, getTask } from "./api";
 import { useQuery } from "@tanstack/react-query";
 import { Task } from "./components/Task/types";
-
-async function getTask() {
-  const response = await fetch("/task");
-  const data = await response.json();
-  return data;
-}
 
 function App() {
   const { data, isLoading, isError } = useQuery<Task[]>({
@@ -25,6 +19,7 @@ function App() {
   const { mutate: removeTask } = useMutation(deleteTask);
   const { mutate: updateStatusTask } = useMutation(putTask);
 
+  console.log(data);
   function moveTaskForward(task: Task) {
     const updatedTask = { ...task };
     if (task.status === "To Do") {

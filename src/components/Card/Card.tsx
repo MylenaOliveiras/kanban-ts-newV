@@ -38,8 +38,8 @@ export default function Card({
 
         {tasks
           .filter((task) => task.status === status)
-          .map((nota) => (
-            <div className="bg-white rounded-lg m-auto">
+          .map((nota, index) => (
+            <div key={index} className="bg-white rounded-lg m-auto">
               <p className="font-medium text-sm p-3 bg-white break-words rounded">
                 {nota.descricao}
               </p>

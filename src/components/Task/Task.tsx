@@ -8,7 +8,7 @@ export default function Task({ onCreate }: ITaskProps) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onCreate({ id: 0, descricao: task, status: "To Do" });
+        onCreate({ descricao: task, status: "To Do" });
         setTask("");
       }}
     >
