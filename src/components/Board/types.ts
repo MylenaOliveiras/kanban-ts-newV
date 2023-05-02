@@ -1,9 +1,9 @@
-import { ITask } from "../Task/types";
+import { Task } from "../Task/types";
 
 export interface IBoard {
-  tasks: ITask[];
-  addTask: (task: ITask) => void;
-  removeTask: (task: ITask) => void;
-  moveTaskForward: (task: ITask) => void;
-  moveTaskBack: (task: ITask) => void;
+  tasks: Task[];
+  addTask: (task: Task) => void;
+  removeTask: (task: Task) => void;
+  moveTaskForward: (task: Task) => void;
+  moveTaskBack: (task: Task) => void;
 }

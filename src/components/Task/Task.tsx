@@ -3,11 +3,12 @@ import { ITaskProps } from "./types";
 
 export default function Task({ onCreate }: ITaskProps) {
   const [task, setTask] = useState("");
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        onCreate({ descricao: task, status: "To Do" });
+        onCreate({ id: 0, descricao: task, status: "To Do" });
         setTask("");
       }}
     >

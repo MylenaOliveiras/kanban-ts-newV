@@ -1,17 +1,11 @@
-import { ITask } from "./components/Task/types";
-import { useQuery } from "@tanstack/react-query";
-
-export const { data, isLoading, isError } = useQuery<ITask[]>({
-  queryKey: ["task"],
-  queryFn: getTask,
-});
+import { Task } from "./components/Task/types";
 
 export async function getTask() {
   const response = await fetch("/task");
   const data = await response.json();
   return data;
 }
-export async function postTask(values: ITask) {
+export async function postTask(values: Task) {
   const response = await fetch("/task", {
     method: "POST",
     body: JSON.stringify(values),
@@ -19,12 +13,12 @@ export async function postTask(values: ITask) {
   const data = await response.json();
   return data;
 }
-export function deleteTask(values: ITask) {
+export function deleteTask(values: Task) {
   return fetch(`/task/${values.id}`, {
     method: "DELETE",
   });
 }
-export async function putTask(values: ITask) {
+export async function putTask(values: Task) {
   const response = await fetch(`/task/${values.id}`, {
     method: "PUT",
     body: JSON.stringify(values),

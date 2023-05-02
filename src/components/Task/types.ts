@@ -1,9 +1,12 @@
-export interface ITask {
-  id?: number;
-  descricao: string;
-  status: "In Progress" | "Done" | "To Do";
-}
+import { z } from "zod";
+
+export const taskSchema = z.object({
+  id: z.number(),
+  descricao: z.string().min(1, { message: "Minimo de 1 ou mais caractere" }),
+  status: z.enum(["To Do", "In Progress", "Done"]),
+});
+export type Task = z.infer<typeof taskSchema>;
 
 export interface ITaskProps {
-  onCreate: (task: ITask) => void;
+  onCreate: (task: Task) => void;
 }

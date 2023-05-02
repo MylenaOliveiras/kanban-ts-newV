@@ -1,10 +1,20 @@
 import Board from "./components/Board/Board";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ITask } from "./components/Task/types";
 import { postTask, deleteTask, putTask } from "./api";
-import { data, isError, isLoading } from "./api";
+import { useQuery } from "@tanstack/react-query";
+import { Task } from "./components/Task/types";
+
+async function getTask() {
+  const response = await fetch("/task");
+  const data = await response.json();
+  return data;
+}
 
 function App() {
+  const { data, isLoading, isError } = useQuery<Task[]>({
+    queryKey: ["task"],
+    queryFn: getTask,
+  });
   const queryClient = useQueryClient();
   const invalidateOptions = {
     onSuccess() {
@@ -15,7 +25,7 @@ function App() {
   const { mutate: removeTask } = useMutation(deleteTask);
   const { mutate: updateStatusTask } = useMutation(putTask);
 
-  function moveTaskForward(task: ITask) {
+  function moveTaskForward(task: Task) {
     const updatedTask = { ...task };
     if (task.status === "To Do") {
       updatedTask.status = "In Progress";
@@ -25,7 +35,7 @@ function App() {
     updateStatusTask(updatedTask, invalidateOptions);
   }
 
-  function moveTaskBack(task: ITask) {
+  function moveTaskBack(task: Task) {
     const updatedTask = { ...task };
     if (task.status === "In Progress") {
       updatedTask.status = "To Do";
