@@ -23,7 +23,7 @@ export default function Card({
   }
 
   return (
-    <section>
+    <section className="pb-10">
       <div className={`w-72 rounded space-y-2 p-2 ${background}`}>
         <header className="flex gap-1 ">
           {status == "To Do" && (

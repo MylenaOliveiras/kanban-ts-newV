@@ -1,27 +1,25 @@
-import { useState } from "react";
 import { ITaskProps } from "./types";
+import { TextField, FormWithMethods, useMethods } from "@mylena-silva/my-ds";
+
+export interface IFieldValues {
+  id: number;
+  descricao: string;
+  status: string;
+}
 
 export default function Task({ onCreate }: ITaskProps) {
-  const [task, setTask] = useState("");
+  const methods = useMethods<IFieldValues>();
+
+  const { reset } = methods;
+
+  const onSubmit = ({ descricao }: IFieldValues) => {
+    onCreate({ descricao: descricao, status: "To Do" });
+    reset();
+  };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onCreate({ descricao: task, status: "To Do" });
-        setTask("");
-      }}
-    >
-      <div className="rounded bg-black/10 p-2">
-        <input
-          className="outline-0 bg-transparent placeholder:text-white/50 text-xs font-medium"
-          placeholder="Write your task..."
-          type="text"
-          onChange={(event) => setTask(event.target.value)}
-          value={task}
-          required
-        />
-      </div>
-    </form>
+    <FormWithMethods methods={methods} onSubmit={onSubmit}>
+      <TextField name="descricao" fullWidth />
+    </FormWithMethods>
   );
 }
